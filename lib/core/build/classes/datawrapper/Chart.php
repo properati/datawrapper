@@ -335,7 +335,9 @@ class Chart extends BaseChart {
      */
     public function redirectPreviousVersions() {
         $current_target = $this->getCDNPath();
-        $redirect_html = '<html><head><meta http-equiv="REFRESH" content="0; url=/'.$current_target.'"></head></html>';
+
+        $subdirectory = ($GLOBALS['dw_config']['publish_subdirectory']) ? $GLOBALS['dw_config']['publish_subdirectory'].'/' : '';
+        $redirect_html = '<html><head><meta http-equiv="REFRESH" content="0; url=/'. $subdirectory .$current_target.'"></head></html>';
         $redirect_file = chart_publish_directory() . 'static/' . $this->getID() . '/redirect.html';
         file_put_contents($redirect_file, $redirect_html);
         $files = array();
