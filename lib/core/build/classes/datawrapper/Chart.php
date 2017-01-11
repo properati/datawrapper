@@ -336,12 +336,12 @@ class Chart extends BaseChart {
     public function redirectPreviousVersions() {
         $current_target = $this->getCDNPath();
 
-        $redirect_html_ver0 = '<html><head><meta http-equiv="REFRESH" content="0; url='. $current_target.'"></head></html>';
+        $redirect_html_ver0 = '<html><head><meta http-equiv="REFRESH" content="0; url=../'. $current_target.'"></head></html>';
         $redirect_file_ver0 = chart_publish_directory() . 'static/' . $this->getID() . '/redirect.html';
         file_put_contents($redirect_file_ver0, $redirect_html_ver0);
 
         # redirect previous versions to a relative URL (../CURRENT_VERSION)
-        $redirect_html = '<html><head><meta http-equiv="REFRESH" content="0; url=../'. $current_target.'"></head></html>';
+        $redirect_html = '<html><head><meta http-equiv="REFRESH" content="0; url=../../'. $current_target.'"></head></html>';
         $redirect_file = chart_publish_directory() . 'static/' . $this->getID() . '/redirect_version.html';
         file_put_contents($redirect_file, $redirect_html);
 
