@@ -131,18 +131,16 @@ function get_chart_content($chart, $user, $published = false, $debug = false) {
     $the_theme_js = get_theme_js($the_theme, array_reverse($theme_js));
     $the_chart_js = get_chart_js();
 
+    $subdirectory= ($GLOBALS['dw_config']['publish_subdirectory']) ?  $GLOBALS['dw_config']['publish_subdirectory'].'/' : '';
+       
     if ($published) {
-        $asset_domain = '';
-        if( !empty($GLOBALS['dw_config']['asset_domain'])){
-          $asset_domain = $GLOBALS['dw_config']['asset_domain'];
-        }
         $scripts = array_merge(
             $base_js,
             $vis_libs_cdn,
             array(
-               $asset_domain . '/lib/' . $the_vis_js[0],
-               $asset_domain . '/lib/' . $the_theme_js[0],
-               $asset_domain . '/lib/' . $the_chart_js[0]
+                '/' . $subdirectory . 'lib/' . $the_vis_js[0],
+                '/' . $subdirectory . 'lib/' . $the_theme_js[0],
+                '/' . $subdirectory . 'lib/' . $the_chart_js[0]
             )
         );
         $stylesheets = array($chart->getID().'.all.css');
